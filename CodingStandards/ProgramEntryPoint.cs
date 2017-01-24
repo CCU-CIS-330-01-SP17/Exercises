@@ -10,13 +10,18 @@ class Program
     static DateTime DTNow = DateTime.Now;
 
     // This is the entry point for the program.
+    /// <summary>
+    /// Prints messages to the console
+    /// </summary>
+    /// <param name="args"></param>
+    /// <returns></returns>
     static int Main(string[] args)
     {
         return WriteMessage(DTNow, Console.Out);
     }
 
     /// <summary>
-    /// 
+    /// Writes a message. Content depends on the current date.
     /// </summary>
     /// <param name="CurrentDate"></param>
     /// <param name="writer"></param>
