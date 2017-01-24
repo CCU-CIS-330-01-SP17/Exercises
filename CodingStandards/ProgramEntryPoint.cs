@@ -7,31 +7,36 @@ using System.Threading.Tasks;
 
 class Program
 {
-        //This is the entry point for the program.
-        static int Main(string[] args)
-{
-    return writeMessage(dtNow, Console.Out);
-}
+    static DateTime DTNow = DateTime.Now;
 
-        static DateTime dtNow = DateTime.Now;
+    // This is the entry point for the program.
+    static int Main(string[] args)
+    {
+        return WriteMessage(DTNow, Console.Out);
+    }
 
-public static int writeMessage(DateTime CurrentDate, TextWriter writer)
-{
-    var intRetVal = 0; const Int32 MESSAGE_COUNT = 5; for (int MyIndex = 0; MyIndex < MESSAGE_COUNT; MyIndex++)
-    /*********************/
-    /* greater than 2016 */
-    /*********************/
-    if (CurrentDate.Year > 2016) writer.WriteLine("Happy New Year!");
-    else
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="CurrentDate"></param>
+    /// <param name="writer"></param>
+    /// <returns></returns>
+    public static int WriteMessage(DateTime CurrentDate, TextWriter writer)
+    {
+        var resultValue = 0;
+        const int messageCount = 5;
+        for (int myIndex = 0; myIndex < messageCount; myIndex++)
+            // This if statement makes sure the date is greater than 2016.
+            if (CurrentDate.Year > 2016)
+            {
+                writer.WriteLine("Happy New Year!");
+            }
+            else
+            {
                 writer.WriteLine("Hello From " + CurrentDate.Year);
-
-
-    //--------------------return the result value----------------------------
-
-
-
-
-    return intRetVal;
+            }
+        // The following statement returns the result value.
+        return resultValue;
     }
 }
 
