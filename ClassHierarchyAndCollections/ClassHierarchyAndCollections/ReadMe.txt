@@ -3,7 +3,7 @@ The first step is to design and develop our object model to represent the kinds 
 and manage.
 
 Instructions:
-1. Create your own branch from master in the Exercises GitHub repository with a name similar to dev/<initials>/week2.
+1. Create your own branch from master in the Exercises GitHub repository with a name similar to dev/<initials>/week4.
 2. Create the following class hierarchy (or a better one!) for storing contacts. Each class should be defined in its own file.
 3. Define at least two unique properties for each class (ex: Contact.DisplayName, Organization.FormationDate, Association.AnnualDues).
 4. Define at least one interface that might be implemented by some classes. An example could be ILocatable, which would provide the
