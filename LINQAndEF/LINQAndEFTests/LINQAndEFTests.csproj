@@ -62,6 +62,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LINQAndEF\LINQAndEF.csproj">
+      <Project>{9db0bc39-ca2d-4cf8-bd66-c8e186ffec2b}</Project>
+      <Name>LINQAndEF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
