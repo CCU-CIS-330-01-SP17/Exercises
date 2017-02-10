@@ -90,7 +90,40 @@ namespace LINQAndEFTests
         [TestMethod]
         public void DataRepository_Can_Update_Customer()
         {
-            Assert.Fail("Write a test to confirm that a customer can be updated. Ensure you save and read from the repository to confirm the update.");
+            Customer customer = null;
+            Customer queriedCustomer = null;
+
+            string companyName = Guid.NewGuid().ToString();
+            string customerId = companyName.Substring(0, 5);
+
+            using (DataRepository<Customer> repository = new DataRepository<Customer>())
+            {
+                customer = repository.Add(new Customer
+                {
+                    CustomerID = customerId,
+                    CompanyName = companyName,
+                    ContactName = "George Smith",
+                    ContactTitle = "CTO",
+                    Address = "123 Main Street, Any Town, USA",
+                    City = "Any Town",
+                    Region = "Southern",
+                    PostalCode = "55555",
+                    Country = "USA",
+                    Phone = "888-899-9932",
+                    Fax = "223-447-2929"
+                });
+
+                repository.Save();
+
+                queriedCustomer = repository.Query(c => c.CustomerID == customerId).FirstOrDefault();
+                Assert.AreEqual("Any Town", queriedCustomer.City);
+
+                queriedCustomer.City = "Another Town";
+                repository.Save();
+
+                queriedCustomer = repository.Query(c => c.CustomerID == customerId).FirstOrDefault();
+                Assert.AreEqual("Another Town", queriedCustomer.City);
+            }
         }
 
         [TestMethod]
