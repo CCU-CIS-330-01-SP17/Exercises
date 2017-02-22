@@ -37,3 +37,7 @@ Contact
      -- Member
      |
      -- Client
+
+<help>
+	assert.ininstanceof type(asdf typeof(Contact));
+</help>q
