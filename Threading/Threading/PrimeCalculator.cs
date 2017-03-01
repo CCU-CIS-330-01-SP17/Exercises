@@ -20,27 +20,30 @@ namespace Threading
         /// <returns>This returns true if the number is prime, otherwise it returns false.</returns>
         public static async Task<bool> CheckPrimeAsync(int number)
         {
-            //One is not a prime number.
-            if (number == 1)
+            return await Task.Run(() =>
             {
-                return false;
-            }
-            //Two is a prime number.
-            else if (number == 2)
-            {
-                return true;
-            }
-            //This loops through all integers between 2 and the square root of the number.
-            for (int i = 2; i <= Math.Ceiling(Math.Sqrt(number)); i++)
-            {
-                //This is to check if the number is divisible by the current possible factor.
-                if (number % i == 0)
+                //One is not a prime number.
+                if (number == 1)
                 {
                     return false;
                 }
-            }
+                //Two is a prime number.
+                else if (number == 2)
+                {
+                    return true;
+                }
+                //This loops through all integers between 2 and the square root of the number.
+                for (int i = 2; i <= Math.Ceiling(Math.Sqrt(number)); i++)
+                {
+                    //This is to check if the number is divisible by the current possible factor.
+                    if (number % i == 0)
+                    {
+                        return false;
+                    }
+                }
 
-            return true;
+                return true;
+            });
         }
        
         /// <summary>
