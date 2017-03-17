@@ -21,22 +21,15 @@ namespace Week7ThreadingTest
                 "https://www.microsoft.com/",
                 "https://www.yahoo.com/",
                 "http://www.bing.com/",
-                "https://www.facebook.com/",
-                "https://www.espn.com",
-                "https://www.pinterest.com/",
-                "https://collaborateworship.com/reverb/"
+                //"https://www.facebook.com/",
+                //"https://www.espn.com",
+                //"https://www.pinterest.com/",
+                //"https://collaborateworship.com/reverb/"
             };
 
             var test = Threading.RunProgram(urlList);
-            test = test.Result;
-            if ("true" == test)
-            {
-                Assert.IsTrue(true);
-            }
-            else
-            {
-                Assert.IsTrue(false);
-            }
+            bool result = test.Result;
+            Assert.IsTrue(result);
         }
     }
 }

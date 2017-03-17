@@ -18,38 +18,40 @@ namespace Week7Threading
     /// </summary>
     public class Threading
     {
-        public static async Task<string> RunProgram(List<string> websites)
+        public static async Task<bool> RunProgram(List<string> websites)
         {
             var urlList = websites;
             await CheckUrl(urlList);
-            return await Task.FromResult("true");
+            return await Task.FromResult(true);
         }
         static async Task CheckUrl(List<string> websites)
         {
-            List<Task> tasks = new List<Task>();
+            //List<Task> tasks = new List<Task>();
 
             List<string> urlList = websites;
 
-            //var urlList = new[]
+            //var urlList = new List<string>()
             //{
             //    "https://www.google.com/",
             //    "https://www.microsoft.com/",
-            //    "https://www.yahoo.com/",
-            //    "http://www.bing.com/",
-            //    "https://www.facebook.com/",
-            //    "https://www.espn.com",
-            //    "https://www.pinterest.com/",
-            //    "https://collaborateworship.com/reverb/"
+            //    //"https://www.yahoo.com/",
+            //    //"http://www.bing.com/",
+            //    //"https://www.facebook.com/",
+            //    //"https://www.espn.com",
+            //    //"https://www.pinterest.com/",
+            //    //"https://collaborateworship.com/reverb/"
             //};
 
-            for (int i = 0; i < urlList.Count; i++)
-            {
-                tasks.Add(Task.Run(() => WebsiteDownload(urlList[i])));
-            }
+            var tasks = urlList.Select(url => Task.Run(() => WebsiteDownload(url))).ToArray();
+
+            //for (int i = 0; i < urlList.Count - 1; i++)
+            //{
+            //    tasks.Add(Task.Run(i => WebsiteDownload(urlList[i])));
+            //}
 
             await Task.WhenAll(tasks);
             Console.Write("Finished thread.");
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         public static Task CheckUrl(string[] urlList)
