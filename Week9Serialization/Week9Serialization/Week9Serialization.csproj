@@ -34,6 +34,10 @@
       <HintPath>..\packages\CompareNETObjects.3.06.0.0\lib\net452\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,8 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AirPlane.cs" />
+    <Compile Include="BinaryFormatter.cs" />
+    <Compile Include="Car.cs" />
+    <Compile Include="DataContractSerialize.cs" />
+    <Compile Include="ISerializer.cs" />
+    <Compile Include="JsonSerialize.cs" />
+    <Compile Include="Motorcycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AppReadme\Compare-NET-Objects-Help.chm" />
