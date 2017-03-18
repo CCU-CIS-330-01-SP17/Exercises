@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7Threading", "Week7Threading.csproj", "{3889B161-92E2-411C-85BB-AD6A3210C12C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Week7ThreadingTest", "..\Week7ThreadingTest\Week7ThreadingTest.csproj", "{C86B3458-9C73-4FEF-B2ED-49E0AD33DA48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3889B161-92E2-411C-85BB-AD6A3210C12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3889B161-92E2-411C-85BB-AD6A3210C12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3889B161-92E2-411C-85BB-AD6A3210C12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3889B161-92E2-411C-85BB-AD6A3210C12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C86B3458-9C73-4FEF-B2ED-49E0AD33DA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C86B3458-9C73-4FEF-B2ED-49E0AD33DA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C86B3458-9C73-4FEF-B2ED-49E0AD33DA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C86B3458-9C73-4FEF-B2ED-49E0AD33DA48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
