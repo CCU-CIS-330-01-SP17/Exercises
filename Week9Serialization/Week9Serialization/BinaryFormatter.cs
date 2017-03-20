@@ -6,9 +6,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Week9Serialization
 {
+    /// <summary>
+    /// Uses BinaryFormatter to serialize, deserialize, and compare data.
+    /// </summary>
     public class BinaryFormat : ISerializer
     {
-        void ISerializer.SerializeList(VehicleList<Vehicle> list)
+        /// <summary>
+        /// Uses ISerializer interface to serialize data using BinaryFormatter.
+        /// </summary>
+        /// <param name="list"></param>
+        static void SerializeList(VehicleList<Vehicle> list)
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
@@ -18,7 +25,12 @@ namespace Week9Serialization
             }
             Console.WriteLine("Your list has been serialized.");
         }
-        VehicleList<Vehicle> ISerializer.DeserializeList(VehicleList<Vehicle> list) 
+        /// <summary>
+        /// Uses ISerializer interface to deserialize data using BinaryFormatter.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        static VehicleList<Vehicle> DeserializeList() 
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
@@ -28,16 +40,26 @@ namespace Week9Serialization
                 deserializedList = formatter.Deserialize(reader) as VehicleList<Vehicle>;
             }
             Console.WriteLine("Your file has been deserialized.");
+
             return deserializedList;
             
         }
-
-        static void CompareObjects(object firstObject, object secondObject, ComparisonConfig config = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        /// <summary>
+        /// Compares the data that is passed to the serializer method to the output of the deserializer method to see if they are the same. 
+        /// </summary>
+        /// <param name="firstObject"></param>
+        /// <param name="secondObject"></param>
+        /// <param name="config"></param>
+        /// <param name="memberName"></param>
+        /// <returns></returns>
+        static bool CompareObjects(object firstObject, object secondObject, ComparisonConfig config = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             CompareLogic comparer = new CompareLogic();
             if (config != null)
             {
                 comparer.Config = config;
+
+                return false;
             }
 
             var compareResult = comparer.Compare(firstObject, secondObject);
@@ -46,12 +68,16 @@ namespace Week9Serialization
             {
                 Console.WriteLine();
                 Console.WriteLine("{0}: Objects match", memberName);
+
+                return true;
             }
             else
             {
                 Console.WriteLine();
                 Console.WriteLine("{0}: Objects DO NOT match!", memberName);
                 Console.WriteLine(compareResult.DifferencesString);
+
+                return false;
             }
         }
     }

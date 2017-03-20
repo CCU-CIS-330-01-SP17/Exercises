@@ -10,11 +10,18 @@ using System.Xml;
 
 namespace Week9Serialization
 {
+    /// <summary>
+    /// Uses JsonSerializer to serialize, deserialize, and compare data.
+    /// </summary>
     class JsonSerialize : ISerializer
     {
-        void ISerializer.SerializeList(VehicleList<Vehicle> serialList)
+        /// <summary>
+        /// Uses ISerializer interface to serialize data using JsonSerializer.
+        /// </summary>
+        /// <param name="serialList"></param>
+        static void SerializeList(VehicleList<Vehicle> serialList)
         {
-            JsonSerializer serializer = new JsonSerializer();
+            JsonSerializer serializer = new JsonSerializer()
             {
                 TypeNameHandling = TypeNameHandling.Auto,
                 Formatting = Newtonsoft.Json.Formatting.Indented
@@ -22,15 +29,20 @@ namespace Week9Serialization
 
             using (StreamWriter writer = File.CreateText("_nsj-vehicle.json"))
             {
-                serializer.Serialize(writer, List);
+                serializer.Serialize(writer, serialList);
             }
             Console.WriteLine("Your list has been serialized.");
         }
-        VehicleList<Vehicle> ISerializer.DeserializeList(VehicleList<Vehicle> serialList)
+        /// <summary>
+        /// Uses ISerializer interface to deserialize data using JsonSerializer.
+        /// </summary>
+        /// <param name="serialList"></param>
+        /// <returns></returns>
+        static VehicleList<Vehicle> DeserializeList()
         {
-            JsonSerializer serializer = new JsonSerializer();
+            JsonSerializer serializer = new JsonSerializer()
             {
-                TypeNameHandlilng = TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.Auto,
                 Formatting = Newtonsoft.Json.Formatting.Indented
             };
             VehicleList<Vehicle> deserializedList = null;
@@ -39,13 +51,25 @@ namespace Week9Serialization
                 deserializedList = serializer.Deserialize(reader, typeof(VehicleList<Vehicle>)) as VehicleList<Vehicle>;
             }
             Console.WriteLine("Your file has been deserialized.");
+
+            return deserializedList;
         }
-        static void CompareObjects(object firstObject, object secondObject, ComparisonConfig config = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        /// <summary>
+        /// Compares the data that is passed to the serializer method to the output of the deserializer method to see if they are the same. 
+        /// </summary>
+        /// <param name="firstObject"></param>
+        /// <param name="secondObject"></param>
+        /// <param name="config"></param>
+        /// <param name="memberName"></param>
+        /// <returns></returns>
+        static bool CompareObjects(object firstObject, object secondObject, ComparisonConfig config = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             CompareLogic comparer = new CompareLogic();
             if (config != null)
             {
                 comparer.Config = config;
+
+                return false;
             }
 
             var compareResult = comparer.Compare(firstObject, secondObject);
@@ -54,12 +78,16 @@ namespace Week9Serialization
             {
                 Console.WriteLine();
                 Console.WriteLine("{0}: Objects match", memberName);
+
+                return true;
             }
             else
             {
                 Console.WriteLine();
                 Console.WriteLine("{0}: Objects DO NOT match!", memberName);
                 Console.WriteLine(compareResult.DifferencesString);
+
+                return false;
             }
         }
     }

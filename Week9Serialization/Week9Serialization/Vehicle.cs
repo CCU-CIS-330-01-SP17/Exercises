@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Week9Serialization
 {
+    /// <summary>
+    /// Defines what the different attributes of a vehicle that sub classes and inherit from. 
+    /// </summary>
+    
     // Required for Binary serialization.
     [Serializable]
     // Required for DataContract serialization.
@@ -15,10 +19,11 @@ namespace Week9Serialization
     {
         public Vehicle (string name = null)
         {
-            Name = name;
+            string Name = name;
 
             Console.WriteLine("This {0} {1} was constructed.", name ?? "<null>", this.GetType().Name);
         }
+
         [DataMember]
         public string TypeOfMotor { get; set; }
         [DataMember]

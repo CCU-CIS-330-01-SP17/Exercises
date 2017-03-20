@@ -6,6 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Week9Serialization
 {
+    /// <summary>
+    /// A type of vehicle that inherits from the Vehicle class. 
+    /// </summary>
+    
+    // Required for Binary serialization.
+    [Serializable]
+    // Required for DataContract serialization.
+    [DataContract]
     public class Car : Vehicle
     {
         public Car(string name = null)
