@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.IO;
+using StreamsIONetworking;
 
 namespace Week10NetworkingCodingExerciseTest
 {
