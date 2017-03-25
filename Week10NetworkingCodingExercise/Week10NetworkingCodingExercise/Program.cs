@@ -24,7 +24,7 @@ namespace StreamsIONetworking
         /// <summary>
         /// Runs localhost based on user specified port number.
         /// </summary>
-        private static void HttpListenerDemo()
+        public static void HttpListenerDemo()
         {
             Console.WriteLine("Please enter the port number you want to use:");
             string portNum = Console.ReadLine();

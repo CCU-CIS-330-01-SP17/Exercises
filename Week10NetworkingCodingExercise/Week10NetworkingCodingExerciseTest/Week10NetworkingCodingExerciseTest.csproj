@@ -53,6 +53,12 @@
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Week10NetworkingCodingExercise\Week10NetworkingCodingExercise.csproj">
+      <Project>{86e77765-a356-43b2-994c-f9495b1a7f9e}</Project>
+      <Name>Week10NetworkingCodingExercise</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
