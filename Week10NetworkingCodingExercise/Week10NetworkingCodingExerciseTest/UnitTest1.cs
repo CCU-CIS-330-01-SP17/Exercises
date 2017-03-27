@@ -6,6 +6,9 @@ using StreamsIONetworking;
 
 namespace Week10NetworkingCodingExerciseTest
 {
+    /// <summary>
+    /// Tests the code that is in the Program class.
+    /// </summary>
     [TestClass]
     public class UnitTest1
     {
@@ -13,7 +16,7 @@ namespace Week10NetworkingCodingExerciseTest
         public void TestMethod1()
         {
             UriBuilder uri = new UriBuilder("http", "lcoalhost", 8001);
-            ListenAsync(uri);
+            //ListenAsync(uri);
 
             //use WebClient to pull information down and test against
             WebClient testClient = new WebClient();
