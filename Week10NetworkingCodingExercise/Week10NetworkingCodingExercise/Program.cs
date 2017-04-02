@@ -31,7 +31,6 @@ namespace StreamsIONetworking
             int portNumber = Convert.ToInt32(portNum);
             UriBuilder uri = new UriBuilder("http", "localhost", portNumber);
 
-
             ListenAsync(uri);
 
             Console.WriteLine($"Server running on port {portNumber}. Press Enter to stop.");
@@ -73,27 +72,9 @@ namespace StreamsIONetworking
             string x = context.Request.QueryString["x"];
             string y = context.Request.QueryString["y"];
 
-            if (x == null && y == null)
-            {
-                // Obtain a response object.
-                HttpListenerResponse response = context.Response;
-                // Obtain a response object.
-                string responseStringDefault = "<HTML><BODY>Hello world!</BODY></HTML>";
-                byte[] bufferDefault = System.Text.Encoding.UTF8.GetBytes(responseStringDefault);
-
-                // Get a response stream and write the response to it.
-                response.ContentLength64 = bufferDefault.Length;
-                Stream outputDefault = response.OutputStream;
-                outputDefault.Write(bufferDefault, 0, bufferDefault.Length);
-
-                // You must close the output stream.
-                outputDefault.Close();
-            }
-
             int queryValueX = 0;
             int queryValueY = 0;
          
-
             if (int.TryParse(x, out queryValueX) && int.TryParse(y, out queryValueY))
             {
                 int result = queryValueX + queryValueY;
@@ -115,7 +96,6 @@ namespace StreamsIONetworking
                 // You must close the output stream.
                 output.Close();
             }
-
             else
             {
                 // Obtain a response object.
@@ -130,7 +110,6 @@ namespace StreamsIONetworking
 
                 // You must close the output stream.
                 output.Close();
-
 
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Response.OutputStream.Close();
