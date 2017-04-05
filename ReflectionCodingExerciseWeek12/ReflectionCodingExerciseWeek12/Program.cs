@@ -16,17 +16,6 @@ namespace ReflectionCodingExerciseWeek12
     {
         static void Main(string[] args)
         {
-            Car toyota = new Car("Camry", 5);
-
-            var typeCar = toyota.GetType();
-
-            toyota.GetPropertyInformation(typeCar);
-
-            MethodInfo driveMethod = toyota.GetType().GetMethod("Drive", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(string) }, null);
-            driveMethod.Invoke(toyota, new object[] { 35, "MPH" });
-
-            Console.ReadKey();
         }
-           
     }
 }

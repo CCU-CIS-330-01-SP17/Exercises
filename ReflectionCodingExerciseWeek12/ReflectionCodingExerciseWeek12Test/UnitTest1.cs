@@ -1,14 +1,7 @@
 ﻿using Microsoft.CSharp;
 using System;
 using System.CodeDom;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ReflectionCodingExerciseWeek12;
 
@@ -17,6 +10,9 @@ namespace ReflectionCodingExerciseWeek12Test
     [TestClass]
     public class UnitTest1
     {
+        /// <summary>
+        /// Tests to see if an instance of Car was constructed.
+        /// </summary>
         [TestMethod]
         public void CarConstructionTest()
         {
@@ -35,7 +31,10 @@ namespace ReflectionCodingExerciseWeek12Test
 
             Assert.IsTrue(testTypeOf);
         }
-
+        /// <summary>
+        /// Tests to see if the parameters are read and write. 
+        /// If it passes, validate is equal to 2 because both properties are read and write.
+        /// </summary>
         [TestMethod]
         public void CarPropertyTest()
         {
@@ -56,17 +55,72 @@ namespace ReflectionCodingExerciseWeek12Test
 
             Assert.IsTrue(canReadCanWrite);
         }
-
+        /// <summary>
+        /// Tests to see if the Drive method can be invoked.
+        /// </summary>
         [TestMethod]
         public void CarMethodInvokeTest()
         {
             Car toyota = new Car("Camry", 5);
 
-            MethodInfo driveMethod = toyota.GetType().GetMethod("Drive", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(string) }, null);
-            driveMethod.Invoke(toyota, new object[] { 35, "MPH" });
+            MethodInfo driveMethod = toyota.GetType().GetMethod("Drive", BindingFlags.Public | BindingFlags.Instance);
+            driveMethod.Invoke(toyota, null);
+        }
+        /// <summary>
+        /// Tests to see if an instance of AirPlane was constructed.
+        /// </summary>
+        [TestMethod]
+        public void AirPlaneConstructionTest()
+        {
+            AirPlane boeing = new AirPlane("737", 290);
 
-            //MethodInfo driveMethod = toyota.GetType().GetMethod("Drive", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(string) }, null);
-            //driveMethod.Invoke(toyota, null);
+            bool testTypeOf = false;
+
+            if (boeing.GetType() == typeof(AirPlane))
+            {
+                testTypeOf = true;
+            }
+            else
+            {
+                testTypeOf = false;
+            }
+
+            Assert.IsTrue(testTypeOf);
+        }
+        /// <summary>
+        /// Tests to see if the parameters are read and write. 
+        /// If it passes, validate is equal to 2 because both properties are read and write.
+        /// </summary>
+        [TestMethod]
+        public void AirPlanePropertyTest()
+        {
+            AirPlane boeing = new AirPlane("737", 290);
+            var planeType = boeing.GetType();
+
+            int validate = boeing.GetPropertyInformation(planeType);
+            bool canReadCanWrite = false;
+
+            if (validate == 2)
+            {
+                canReadCanWrite = true;
+            }
+            else
+            {
+                canReadCanWrite = false;
+            }
+
+            Assert.IsTrue(canReadCanWrite);
+        }
+        /// <summary>
+        /// Tests to see if the Fly method can be invoked.
+        /// </summary>
+        [TestMethod]
+        public void AirPlaneMethodInvokeTest()
+        {
+            AirPlane boeing = new AirPlane("737", 290);
+
+            MethodInfo flyMethod = boeing.GetType().GetMethod("Fly", BindingFlags.Public | BindingFlags.Instance);
+            flyMethod.Invoke(boeing, null);
         }
     }
 }
