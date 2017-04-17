@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Disposable
 {
+    /// <summary>
+    /// A Writing Utensil, ususally used to draw attention to existing words.
+    /// </summary>
     public class Highlighter : WritingUntensil
     {
         private bool _isDisposed;
         private readonly ConsoleColor _highlightColor;
         private readonly ConsoleColor _inkColor;
+
         public Highlighter(ConsoleColor inkColor, ConsoleColor highlightColor) : base(inkColor)
         {
             _highlightColor = highlightColor;
@@ -19,9 +23,22 @@ namespace Disposable
         }
 
         /// <summary>
-        /// Whether messages written should also be highlighted.
+        /// Readies the Highlighter for disposal.
         /// </summary>
-        public bool HighlightMessages { get; set; }
+        public new void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Readies the Highlighter for disposal and disables functionality.
+        /// </summary>
+        /// <param name="disposing">Specifies whether the object is in the process of disposing or not.</param>
+        internal override void Dispose(bool disposing)
+        {
+            _isDisposed = true;
+            base.Dispose(disposing);
+        }
 
         /// <summary>
         /// Writes a message with the highlighter.
@@ -33,8 +50,7 @@ namespace Disposable
                 throw new ObjectDisposedException(this + " has been disposed and is no longer available.");
 
             Console.ResetColor();
-            if (HighlightMessages)
-                Console.BackgroundColor = _highlightColor;
+            Console.BackgroundColor = _highlightColor;
             Console.ForegroundColor = _inkColor;
             Console.WriteLine(message);
         }

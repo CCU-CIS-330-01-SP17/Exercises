@@ -32,7 +32,7 @@ namespace Disposable
         /// Readies the WritingUtensil for disposal and disables functionality.
         /// </summary>
         /// <param name="disposing">Specifies whether the object is in the process of disposing or not.</param>
-        public virtual void Dispose(bool disposing)
+        internal virtual void Dispose(bool disposing)
         {
             _isDisposed = true;
         }
