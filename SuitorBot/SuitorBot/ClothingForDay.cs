@@ -13,3 +13,4 @@ namespace SuitorBot
         string clothingFeet { get; set; }
     }
 }
+ 

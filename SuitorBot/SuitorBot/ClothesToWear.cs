@@ -23,5 +23,6 @@ namespace SuitorBot
         public bool Warm { get; set; }
         public bool BusinessCasual { get; set; }
         public bool BusinessFormal { get; set; }
+        public bool Suit { get; set; }
     }
 }

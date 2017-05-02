@@ -21,26 +21,30 @@ namespace SuitorBot
                     "City must be a string and must not be blank or null.");
             }
 
-        //    if (ValidCity(city) == true)
-        //    {
-        //        cityCode = city;
-        //    }
-        //}
-        //private bool ValidCity(string city)
-        //{
-        //    bool isCity = false;
-        //    try
-        //    {
-        //        if (Regex.IsMatch(city, @"(^[a-zA-Z])$"))
-        //        {
-        //            isCity = true;
-        //            return isCity;
-        //        }
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-        //        throw;
-        //    }
+            if (ValidCity(city) == true)
+            {
+                cityCode = city;
+            }
+        }
+        private bool ValidCity(string city)
+        {
+            bool isCity = false;
+            try
+            {
+                if (Regex.IsMatch(city, @"^([a-zA-Z])$"))
+                {
+                    isCity = true;
+                    return isCity;
+                }
+                else
+                {
+                    return isCity;
+                }
+            }
+            catch (ArgumentException )
+            {
+                throw;
+            }
         }
     }
 }

@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <EntityDeploy Include="ClothingModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ClothingModel.Designer.cs</LastGenOutput>

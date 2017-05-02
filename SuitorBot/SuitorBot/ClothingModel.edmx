@@ -18,6 +18,7 @@
           <Property Name="Warm" Type="bit" Nullable="false" />
           <Property Name="BusinessCasual" Type="bit" Nullable="false" />
           <Property Name="BusinessFormal" Type="bit" Nullable="false" />
+          <Property Name="Suit" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ClothingModelStoreContainer">
           <EntitySet Name="ClothesToWear" EntityType="Self.ClothesToWear" Schema="dbo" store:Type="Tables" />
@@ -40,6 +41,7 @@
           <Property Name="Warm" Type="Boolean" Nullable="false" />
           <Property Name="BusinessCasual" Type="Boolean" Nullable="false" />
           <Property Name="BusinessFormal" Type="Boolean" Nullable="false" />
+          <Property Name="Suit" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ClothingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ClothesToWears" EntityType="Self.ClothesToWear" />
@@ -62,6 +64,7 @@
                 <ScalarProperty Name="Warm" ColumnName="Warm" />
                 <ScalarProperty Name="BusinessCasual" ColumnName="BusinessCasual" />
                 <ScalarProperty Name="BusinessFormal" ColumnName="BusinessFormal" />
+                <ScalarProperty Name="Suit" ColumnName="Suit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

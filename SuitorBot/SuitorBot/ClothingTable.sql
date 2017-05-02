@@ -7,24 +7,27 @@
 	Cold bit NOT NULL,
 	Warm bit NOT NULL,
 	BusinessCasual bit NOT NULL,
-	BusinessFormal bit NOT NULL
+	BusinessFormal bit NOT NULL,
+	Suit bit NOT NULL
 	)
 GO
 
-INSERT INTO ClothesToWear(ClothingItem, ClothingTop, ClothingBottom, ClothingFeet,Cold, Warm, BusinessCasual, BusinessFormal)
+INSERT INTO ClothesToWear(ClothingItem, ClothingTop, ClothingBottom, ClothingFeet, Cold, Warm, BusinessCasual, BusinessFormal, Suit)
 	VALUES
-	('shorts', 0,1,0,0,1,0,0),
-	('jeans', 0,1,0,1,0,0,0),
-	('khakis',0,1,0,1,0,1,0),
-	('t-shirt',1,0,0,0,1,0,0),
-	('long-sleeve shirt',1,0,0,1,0,0,0),
-	('button-down shirt',1,0,0,1,1,1,1),
-	('suit jacket', 1,0,0,1,1,0,1),
-	('suit pants', 0,1,0,1,1,0,1),
-	('tennis shoes',0,0,1,1,1,0,0),
-	('dress shoes',0,0,1,1,1,1,1)
+	('shorts', 0,1,0,0,1,0,0,0),
+	('jeans', 0,1,0,1,0,0,0,0),
+	('khakis',0,1,0,1,0,1,0,0),
+	('t-shirt',1,0,0,0,1,0,0,0),
+	('long-sleeve shirt',1,0,0,1,0,0,0,0),
+	('button-down shirt',1,0,0,1,1,1,1,0),
+	('suit jacket', 1,0,0,1,1,0,1,1),
+	('suit pants', 0,1,0,1,1,0,1,1),
+	('tennis shoes',0,0,1,1,1,0,0,0),
+	('dress shoes',0,0,1,1,1,1,1,0)
 GO
 
 
 
-SELECT * FROM ClothesToWear
+SELECT * FROM ClothesToWear 
+
+

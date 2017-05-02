@@ -22,30 +22,34 @@ namespace SuitorBot
 
             }
 
-            //    if (ValidZipCode(zip) == true )
-            //    {
-            //        zipCode = zip;
-            //    }
-            //}
-
-            //private bool ValidZipCode(int zip)
-            //{
-            //    bool isZipCode = false;
-            //    try
-            //    {
-            //        if (Regex.IsMatch(zip.ToString(), @"^(?<Zip>\d{5})$"))
-            //        {
-            //            isZipCode = true;
-            //            return isZipCode;
-            //        }
-            //    }
-            //    catch (ArgumentException e)
-            //    {
-            //        throw;
-            //    }
-
-            //}
+            if (ValidZipCode(zip) == true)
+            {
+                zipCode = zip;
+            }
         }
+
+        private bool ValidZipCode(string zip)
+        {
+            bool isZipCode = false;
+            try
+            {
+                if (Regex.IsMatch(zip.ToString(), @"^(?<Zip>\d{5})$"))
+                {
+                    isZipCode = true;
+                    return isZipCode;
+                }
+                else
+                {
+                    return isZipCode;
+                }
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
+
+        }
+    }
     }
 }
 

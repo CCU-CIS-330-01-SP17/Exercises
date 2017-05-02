@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Data.SqlClient;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 
 namespace SuitorBot
 {
@@ -17,9 +19,14 @@ namespace SuitorBot
         {
             Weather todayWeather = null;
             HttpResponseMessage response = await client.GetAsync(path);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                todayWeather = await response.Content.ReadAsAsync<Weather>();
+                string weatherJson = await response.Content.ReadAsStringAsync();
+                todayWeather = JsonConvert.DeserializeObject<Weather>(weatherJson);
+
+                //Debugging purposes.
+                Console.WriteLine("Attempting to view parse data from api.");
+                Console.WriteLine("\n" + todayWeather);
             }
             return todayWeather;
         }
@@ -27,6 +34,10 @@ namespace SuitorBot
         {
             //Uri works properly.
             client.BaseAddress = new Uri("http://api.openweathermap.org/data/2.5/forecast?q=" + location + ",us&mode=json&appid=05e5cab64950145454f8d6240c841f0d");
+
+            //Debuging puroses.
+            Console.WriteLine(client.BaseAddress);
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -37,138 +48,381 @@ namespace SuitorBot
         static void ClothingSelection(int temp, string date)
         {
             int tempMax = 77;
-            string dateNow;
+            string dateNow = date;
             string top;
             string bottom;
             string shoes;
             string suit;
 
-            //SqlConnection clothingDB = new SqlConnection("Clothing.mdf");
 
-            switch (string dateNow)
+            switch (dateNow)
             {
                 case "Sunday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
                 case "Monday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
                 case "Tuesday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
                 case "Wednesday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 1);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 1);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 1);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessCasual);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessCasual);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessCasual);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 1);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 1);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 1);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold)
+                                                                    .Where(c => c.BusinessCasual);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold)
+                                                                    .Where(c => c.BusinessCasual);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold)
+                                                                    .Where(c => c.BusinessCasual);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
                 case "Thursday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessFormal = 1);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessFormal = 1);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessFormal = 1);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessFormal);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessFormal);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessFormal);
+                            shoes = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm)
+                                                                 .Where(c => c.BusinessFormal)
+                                                                 .Where(c => c.Suit);
+                            suit = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessFormal = 1);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessFormal = 1);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessFormal = 1);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Cold)
+                                                                 .Where(c => c.BusinessFormal);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Cold)
+                                                                 .Where(c => c.BusinessFormal);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Cold)
+                                                                 .Where(c => c.BusinessFormal);
+                            shoes = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Cold)
+                                                                 .Where(c => c.BusinessFormal)
+                                                                 .Where(c => c.Suit);
+                            suit = clothes.ToString();
+                        }
                     }
                     break;
                 case "Friday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
                 case "Saturday":
                     if (tempMax >= 65)
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Warm = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                 .Where(c => c.Warm);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                 .Where(c => c.Warm);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                 .Where(c => c.Warm);
+                            shoes = clothes.ToString();
+                        }
                     }
                     else
                     {
-                        top = clothing.Where(c => c.ClothingTop = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        bottom = clothing.Where(c => c.ClothingBottom = 1 and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
-                        shoes = clothing.Where(clothingDB => c.ClothingFeet = 1and c.Cold = 1 and c.BusinessCasual = 0 and c.BusinessFormal = 0);
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
+                                                                    .Where(c => c.Cold);
+                            top = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
+                                                                    .Where(c => c.Cold);
+                            bottom = clothes.ToString();
+                        }
+                        using (ClothingEntities entities = new ClothingEntities())
+                        {
+                            var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
+                                                                    .Where(c => c.Cold);
+                            shoes = clothes.ToString();
+                        }
                     }
                     break;
             }
         }
         static void Main()
         {
-            Console.Write("Would you like to choose location by city name or zip code? \nPlease enter '1' or '2' respectively:");
+            Console.Write("Would you like to choose location by city name (1) or zip code(2)? \nPlease enter '1' or '2' respectively:");
             string locationSelection = Console.ReadLine();
             if (locationSelection == "1")
             {
                 Console.Write("What city would you like the weather for?");
-                LocationByCity city = new LocationByCity(Console.ReadLine());
+                string cityLocation = Console.ReadLine();
+                LocationByCity city = new LocationByCity(cityLocation);
+
+                //Functioning code at this point.
 
                 RunAsync(city.cityCode).Wait();
-                    
+
             }
             if (locationSelection == "2")
             {
                 Console.Write("What city would you like the weather for?");
-                LocationByZipCode city = new LocationByZipCode(Console.ReadLine());
+                string cityLocation = Console.ReadLine();
+                LocationByZipCode city = new LocationByZipCode(cityLocation);
 
-                RunAsync(city.zipCode ).Wait();
+                //Functioning code at this point.
+
+                RunAsync(city.zipCode).Wait();
             }
-            
+
 
             Console.ReadKey();
-        }        
+        }
     }
 }
