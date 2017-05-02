@@ -83,7 +83,7 @@ namespace SaveSynchronizer
         public bool RemoteFileIsLatest()
         {
             var remoteTask = _remoteSaveHandler.GetLastSaveModifiedAsync();
-            var localTask = _localSaveHandler.GetLocalFileModifiedAsync();
+            var localTask = _localSaveHandler.GetLastSaveModifiedAsync();
             Task.WaitAll(remoteTask, localTask);
             int result = DateTime.Compare(localTask.Result, remoteTask.Result);
             return result <= 0;
