@@ -9,12 +9,12 @@ namespace SuitorBot
 {
     public class LocationByZipCode : Location
     {
-        public int zipCode { get; set; }
+        public string zipCode { get; set; }
 
-        public LocationByZipCode(int zip)
-        : base(zip.ToString())
+        public LocationByZipCode(string zip)
+        : base(zip)
         {
-            if ((zip == null) || (zip.GetType() != typeof(int)))
+            if ((zip == null) || (zip.GetType() != typeof(string)))
             {
                 throw new ArgumentOutOfRangeException(
                     "Zip Code", zip,

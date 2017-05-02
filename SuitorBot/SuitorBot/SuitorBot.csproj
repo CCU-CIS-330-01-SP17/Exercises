@@ -80,6 +80,7 @@
     <Compile Include="ClothesToWear.cs">
       <DependentUpon>ClothingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClothingForDay.cs" />
     <Compile Include="ClothingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
