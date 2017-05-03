@@ -25,7 +25,7 @@ namespace SuitorBot
                 todayWeather = JsonConvert.DeserializeObject<Weather>(weatherJson);
 
                 //Debugging purposes.
-                Console.WriteLine("Attempting to view parse data from api.");
+                Console.WriteLine("\nAttempting to view parse data from api.");
                 Console.WriteLine("\n" + todayWeather);
             }
             return todayWeather;
@@ -38,6 +38,8 @@ namespace SuitorBot
             //Debuging puroses.
             Console.WriteLine(client.BaseAddress);
 
+            Console.WriteLine("\nWeb address successful.");
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -45,17 +47,41 @@ namespace SuitorBot
 
             Console.WriteLine(newWeather.ToString());
         }
-        static void ClothingSelection(int temp, string date)
+        static void ClothingSelection(int temp, DateTime date)
         {
             int tempMax = 77;
-            string dateNow = date;
-            string top;
-            string bottom;
-            string shoes;
-            string suit;
+            DateTime dateNow = date;
+            string day = null;
+            string top = null;
+            string bottom = null;
+            string shoes = null;
+            string suit = null;
 
-
-            switch (dateNow)
+            switch((int)dateNow.DayOfWeek)
+            {
+                case 1:
+                    day = "Sunday";
+                    break;
+                case 2:
+                    day = "Monday";
+                    break;
+                case 3:
+                    day = "Tuesday";
+                    break;
+                case 4:
+                    day = "Wednesday";
+                    break;
+                case 5:
+                    day = "Thursday";
+                    break;
+                case 6:
+                    day = "Friday";
+                    break;
+                case 7:
+                    day = "Saturday";
+                    break;
+            }
+            switch (day)
             {
                 case "Sunday":
                     if (tempMax >= 65)
@@ -64,19 +90,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm);
-                            top = clothes.ToString();
+                            foreach(var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -85,19 +120,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom =  c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -108,19 +152,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -129,19 +182,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -152,19 +214,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -173,19 +244,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -197,21 +277,30 @@ namespace SuitorBot
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessCasual);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessCasual);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessCasual);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -221,21 +310,30 @@ namespace SuitorBot
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold)
                                                                     .Where(c => c.BusinessCasual);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold)
                                                                     .Where(c => c.BusinessCasual);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold)
                                                                     .Where(c => c.BusinessCasual);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -247,21 +345,30 @@ namespace SuitorBot
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessFormal);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessFormal);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessFormal);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
@@ -269,7 +376,10 @@ namespace SuitorBot
                                                                  .Where(c => c.Warm)
                                                                  .Where(c => c.BusinessFormal)
                                                                  .Where(c => c.Suit);
-                            suit = clothes.ToString();
+                            foreach(var c in clothes)
+                            {
+                                suit = c.ToString();
+                            }
                         }
                     }
                     else
@@ -279,21 +389,30 @@ namespace SuitorBot
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Cold)
                                                                  .Where(c => c.BusinessFormal);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Cold)
                                                                  .Where(c => c.BusinessFormal);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Cold)
                                                                  .Where(c => c.BusinessFormal);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
@@ -301,7 +420,10 @@ namespace SuitorBot
                                                                  .Where(c => c.Cold)
                                                                  .Where(c => c.BusinessFormal)
                                                                  .Where(c => c.Suit);
-                            suit = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                suit = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -312,19 +434,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -333,19 +464,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
@@ -356,19 +496,28 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                  .Where(c => c.Warm);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                  .Where(c => c.Warm);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                  .Where(c => c.Warm);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     else
@@ -377,23 +526,33 @@ namespace SuitorBot
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingTop)
                                                                     .Where(c => c.Cold);
-                            top = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                top = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingBottom)
                                                                     .Where(c => c.Cold);
-                            bottom = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                bottom = c.ToString();
+                            }
                         }
                         using (ClothingEntities entities = new ClothingEntities())
                         {
                             var clothes = entities.ClothesToWears.Where(c => c.ClothingFeet)
                                                                     .Where(c => c.Cold);
-                            shoes = clothes.ToString();
+                            foreach (var c in clothes)
+                            {
+                                shoes = c.ToString();
+                            }
                         }
                     }
                     break;
             }
+            Console.WriteLine("For today, wear {0} on top, {1} on bottom {2} on your feet. If it is a business day wear your {3}.", top, bottom, shoes, suit);
         }
         static void Main()
         {

@@ -11,17 +11,20 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-public partial class ClothingEntities : DbContext
+namespace SuitorBot
 {
-    public ClothingEntities()
-        : base("name=ClothingEntities")
+    public partial class ClothingEntities : DbContext
     {
-    }
+        public ClothingEntities()
+            : base("name=ClothingEntities")
+        {
+        }
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
 
-    public virtual DbSet<ClothesToWear> ClothesToWears { get; set; }
+        public virtual DbSet<ClothesToWear> ClothesToWears { get; set; }
+    }
 }
