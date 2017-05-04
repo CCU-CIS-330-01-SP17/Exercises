@@ -8,9 +8,10 @@ namespace SuitorBot
 {
     public class ClothingForDay
     {
-        string clothingTop { get; set; }
-        string clothingBottom { get; set; }
-        string clothingFeet { get; set; }
+        public string clothingTop { get; set; }
+        public string clothingBottom { get; set; }
+        public string clothingFeet { get; set; }
+        public string suit { get; set; }
     }
 }
  

@@ -1,4 +1,7 @@
-﻿CREATE TABLE ClothesToWear(
+﻿USE master
+GO
+
+CREATE TABLE ClothesToWear(
 	ClothID int IDENTITY(1,1) PRIMARY KEY,
 	ClothingItem varchar(50) NOT NULL,
 	ClothingTop bit NOT NULL,
@@ -10,6 +13,9 @@
 	BusinessFormal bit NOT NULL,
 	Suit bit NOT NULL
 	)
+GO
+
+USE ClothesToWear
 GO
 
 INSERT INTO ClothesToWear(ClothingItem, ClothingTop, ClothingBottom, ClothingFeet, Cold, Warm, BusinessCasual, BusinessFormal, Suit)
