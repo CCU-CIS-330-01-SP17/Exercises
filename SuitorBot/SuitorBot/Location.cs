@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SuitorBot
 {
+    /// <summary>
+    /// Class that identifies the location that user wants the weather for.
+    /// </summary>
     public class Location
     {
         public string userLocation { get; set; }

@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace SuitorBot
 {
+    /// <summary>
+    /// Class that identifies the location that user wants the weather for based on the city's name.
+    /// </summary>
     public class LocationByCity : Location
     {
         public string cityCode { get; set; }
@@ -26,6 +29,11 @@ namespace SuitorBot
                 cityCode = city;
             }
         }
+        /// <summary>
+        /// Validates the user's input for alapha characters only.
+        /// </summary>
+        /// <param name="city">String of the city's name.</param>
+        /// <returns></returns>
         private bool ValidCity(string city)
         {
             bool isCity = false;

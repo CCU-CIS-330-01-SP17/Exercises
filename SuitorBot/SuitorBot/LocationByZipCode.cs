@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace SuitorBot
 {
+    /// <summary>
+    /// Class that identifies the location that user wants the weather for based the city's zip code.
+    /// </summary>
     public class LocationByZipCode : Location
     {
         public string zipCode { get; set; }
@@ -27,7 +30,11 @@ namespace SuitorBot
                 zipCode = zip;
             }
         }
-
+        /// <summary>
+        /// Validates the user's input based on the city's zip code using 5 digit zip code.
+        /// </summary>
+        /// <param name="zip">String of the zip code of the ciyt.</param>
+        /// <returns></returns>
         private bool ValidZipCode(string zip)
         {
             bool isZipCode = false;

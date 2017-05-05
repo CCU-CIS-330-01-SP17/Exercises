@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SuitorBot
 {
+    /// <summary>
+    /// Class that houses what is going to be worn for the day.
+    /// </summary>
     public class ClothingForDay
     {
         public string clothingTop { get; set; }

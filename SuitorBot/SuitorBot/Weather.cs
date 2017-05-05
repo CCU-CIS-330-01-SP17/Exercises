@@ -12,6 +12,9 @@ using System.Net.Http.Headers;
 
 namespace SuitorBot
 {
+    /// <summary>
+    /// Class that is used for Json deserialization. 
+    /// </summary>
     public class Weather
     {
         string location { get; set; }

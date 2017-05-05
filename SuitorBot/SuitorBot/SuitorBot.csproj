@@ -133,7 +133,9 @@
       <DependentUpon>ClothingModel.edmx</DependentUpon>
       <LastGenOutput>ClothingModel.cs</LastGenOutput>
     </Content>
-    <None Include="WeatherJSONOutput.txt" />
+    <None Include="WeatherJSONOutput.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ClothingTable.sql" />
     <Content Include="Clothing_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
