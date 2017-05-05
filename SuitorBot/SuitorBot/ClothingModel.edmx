@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClothingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClothesToWear">
+          <Key>
+            <PropertyRef Name="ClothID" />
+          </Key>
+          <Property Name="ClothID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClothingItem" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClothingTop" Type="bit" Nullable="false" />
+          <Property Name="ClothingBottom" Type="bit" Nullable="false" />
+          <Property Name="ClothingFeet" Type="bit" Nullable="false" />
+          <Property Name="Cold" Type="bit" Nullable="false" />
+          <Property Name="Warm" Type="bit" Nullable="false" />
+          <Property Name="BusinessCasual" Type="bit" Nullable="false" />
+          <Property Name="BusinessFormal" Type="bit" Nullable="false" />
+          <Property Name="Suit" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ClothingModelStoreContainer">
+          <EntitySet Name="ClothesToWear" EntityType="Self.ClothesToWear" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClothingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClothesToWear">
+          <Key>
+            <PropertyRef Name="ClothID" />
+          </Key>
+          <Property Name="ClothID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClothingItem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClothingTop" Type="Boolean" Nullable="false" />
+          <Property Name="ClothingBottom" Type="Boolean" Nullable="false" />
+          <Property Name="ClothingFeet" Type="Boolean" Nullable="false" />
+          <Property Name="Cold" Type="Boolean" Nullable="false" />
+          <Property Name="Warm" Type="Boolean" Nullable="false" />
+          <Property Name="BusinessCasual" Type="Boolean" Nullable="false" />
+          <Property Name="BusinessFormal" Type="Boolean" Nullable="false" />
+          <Property Name="Suit" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ClothingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClothesToWears" EntityType="Self.ClothesToWear" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClothingModelStoreContainer" CdmEntityContainer="ClothingEntities">
+          <EntitySetMapping Name="ClothesToWears">
+            <EntityTypeMapping TypeName="ClothingModel.ClothesToWear">
+              <MappingFragment StoreEntitySet="ClothesToWear">
+                <ScalarProperty Name="ClothID" ColumnName="ClothID" />
+                <ScalarProperty Name="ClothingItem" ColumnName="ClothingItem" />
+                <ScalarProperty Name="ClothingTop" ColumnName="ClothingTop" />
+                <ScalarProperty Name="ClothingBottom" ColumnName="ClothingBottom" />
+                <ScalarProperty Name="ClothingFeet" ColumnName="ClothingFeet" />
+                <ScalarProperty Name="Cold" ColumnName="Cold" />
+                <ScalarProperty Name="Warm" ColumnName="Warm" />
+                <ScalarProperty Name="BusinessCasual" ColumnName="BusinessCasual" />
+                <ScalarProperty Name="BusinessFormal" ColumnName="BusinessFormal" />
+                <ScalarProperty Name="Suit" ColumnName="Suit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
